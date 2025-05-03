@@ -15,4 +15,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Show OS
-        run: echo "This job is running on an Windows Runner"
+        run: | 
+          echo "This job is running on an Windows Runner"
+          echo "I h've triggered by ${{ github.event_name }}"
+          echo "Runner OS: $RUNNER_OS"
