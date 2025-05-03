@@ -7,4 +7,4 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Show the trigger
-              run: echo "This is push trigger" 
+              run: echo "I ha've been triggred by ${{ github.event_name }}"
