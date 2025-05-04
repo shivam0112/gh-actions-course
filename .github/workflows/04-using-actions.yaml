@@ -9,7 +9,7 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
             - name:  Printing folders
-              run:   ls
+              run:   ls -ltrh
 
 
         # 0.Checkout code from the repository
