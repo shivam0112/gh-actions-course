@@ -1,0 +1,16 @@
+name: 05 - 1 - Event Filters and Activity types
+
+on:
+    - pull_request: [opened, synchronize]
+    branch:
+        - main
+
+jobs:
+    echo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Runnning whenever a PR is opened or synchronized AND base branch is main
+              run: |
+                echo "i have trigerred by {{ github.event_name }}"
+                echo "The RUNNER OS is $RUNNER_OS"
+
