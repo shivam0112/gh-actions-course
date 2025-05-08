@@ -5,7 +5,10 @@ on:
     push:
     workflow_dispatch:
       inputs:
-        debug:
+        DEV:
+          type: boolean
+          default: false
+        PROD:
           type: boolean
           default: false
 
