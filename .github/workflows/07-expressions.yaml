@@ -12,7 +12,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Print Start Up Data
-              if: ${{ inputs.Debug }} == true
+              if: ${{ inputs.Debug }}
               run: |
                 echo "Trigerred By: ${{ github.event_name }}"
                 echo "Branch: ${{ github.ref }}"
@@ -20,7 +20,7 @@ jobs:
                 echo "Runner OS: ${{ runner.os }}"
     
             - name: Print when triggered from main
-              if: ${{ inputs.Debug == true }} && ${{ github.ref == 'refs/heads/main' }}
+              if: ${{ inputs.Debug  &&  github.ref == 'refs/heads/main' }}
               run: |
                 echo "I was triggered from main"
             - name: Greerting
