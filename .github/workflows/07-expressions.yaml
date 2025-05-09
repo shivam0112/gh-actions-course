@@ -12,9 +12,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Print Start Up Data
-              if: inputs.Debug == true
+              if: ${{ inputs.Debug }} == true
               run: |
                 echo "Trigerred By: ${{ github.event_name }}"
                 echo "Branch: ${{ github.ref }}"
                 echo "Commit SHA: ${{ github.sha }}"
-                echo "Runner OS: $RUNNER_OS"
+                echo "Runner OS: ${{ runner.os }}"
+    
+            - name: Print when triggered from main
+              if: ${{ inputs.Debug == true }} || ${{ github. }}
+              run: |
+                echo ""
+            - name: 

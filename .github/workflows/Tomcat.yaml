@@ -1,0 +1,67 @@
+name: Tomcat - AD
+
+on:
+    workflow_dispatch:
+        inputs:
+            action:
+                required: false
+                type: choice
+                description:    Enter the action to perform. It will default to workflow name if not specified.
+                default: 'restart'
+                options:
+                    - 'start'
+                    - 'restart'
+
+                dev1:
+                    description: "dev1"
+                    rerquired: true
+                    default: ''
+                    type: boolean
+
+                dev2:
+                    description: "dev2"
+                    rerquired: true
+                    default: ''
+                    type: boolean
+
+                qa1:
+                    description: "qa1"
+                    required: true
+                    default: ''
+                    type: boolean
+
+                qa2:
+                    description: "qa2"
+                    required: true
+                    default: ''
+                    type: boolean
+
+                uat1:
+                    description: "uat1"
+                    required: false
+                    default: ''
+                    type: boolean
+
+                uat2:
+                    description: "uat2"
+                    requirede: false
+                    default: ''
+                    type: boolean
+                
+                prd1:
+                    description: "prd1"
+                    required: false
+                    default: ''
+                    type: boolean
+
+jobs:
+    setvars:
+        runs-on: ubuntu-latest
+        outputs:
+            runner_name: ${{ runner.name }}
+            WORKSPACE_LOC:  ${{ github.workspace }}
+        
+        steps:
+            - name: Cleanup & Print Variables
+              run: |
+                echo "WORKSPACE_PATH=${{ github.workspace }}"
