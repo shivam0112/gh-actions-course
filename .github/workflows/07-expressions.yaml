@@ -6,12 +6,12 @@ on:
         inputs:
             Debug:
                 type: boolean
-                default: flase
+                default: false
 jobs:
     echo:
         runs-on: ubuntu-latest
         steps:
-            - name: [Debug] Print Start Up Data
+            - name: Print Start Up Data
               if: inputs.Debug == true
               run: |
                 echo "Trigerred By: ${{ github.event_name }}"
