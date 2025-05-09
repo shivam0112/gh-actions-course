@@ -1,0 +1,20 @@
+name: 07- Using Expressions
+
+on:
+    push:
+    workflow_dispatch:
+        inputs:
+            Debug:
+                type: boolean
+                default: flase
+jobs:
+    echo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: [Debug] Print Start Up Data
+              if: inputs.Debug == true
+              run: |
+                echo "Trigerred By: ${{ github.event_name }}"
+                echo "Branch: ${{ github.ref }}"
+                echo "Commit SHA: ${{ github.sha }}"
+                echo "Runner OS: ${{ RUNNER_OS }}"
