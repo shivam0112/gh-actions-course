@@ -9,6 +9,14 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
+
+            - name: informations
+              run: |
+                echo "I have triggered by ${{ github.event_name }}}"
+                echo "Run By: ${{ github.actor }}"
+                echo "Running On: ${{ runner.name }} and ${{ runner.os }}"
+                echo "${{ github.workflow }} "
+                
             - name: Failing step
               run: exit 1
 
@@ -22,17 +30,12 @@ jobs:
 
             - name: i will execute when cancelled
               if: ${{ !cancelled() }}
-              run: echo "I will print if the workflow has been cancelled"
+              run: echo "I will alway print, except workflow is cancelled. "
 
             - name: I will execute when cancelled
-              if: ${{cancelled()}}
-              run: echo "I will always print, except when the workflow is cancelled."
+              if: ${{ cancelled() }}
+              run: echo "I will print, if the workflow has been cancelled."
 
             
 
-            - name: informations
-              run: |
-                echo "I have triggered by ${{ github.event_name }}}"
-                echo "Run By: ${{ github.actor }}"
-                echo "Running On: ${{ runner.name }} and ${{ runner.os }}"
-                echo "${{ github.workflow }} "
+            
