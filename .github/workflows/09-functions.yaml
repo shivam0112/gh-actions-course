@@ -16,7 +16,10 @@ jobs:
                 echo "Run By: ${{ github.actor }}"
                 echo "Running On: ${{ runner.name }} and ${{ runner.os }}"
                 echo "${{ github.workflow }} "
-                
+
+            - name: Failing step
+              run: sleep 10
+
             - name: Failing step
               run: exit 1
 
