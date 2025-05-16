@@ -12,8 +12,8 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-        outputs:
-            build-status: ${{ steps.build.outputs.status }}
+        # outputs:
+        #     build-status: ${{ steps.build.outputs.status }}
         steps:
             - name: Print GITHUB_OUTPUT path 
               run: |
@@ -22,7 +22,6 @@ jobs:
               id: build
               run: |
                 echo "status=${{ inputs.build-status }}"  >> $GITHUB_OUTPUT
-                echo "Lund_Mera=Tera" > $GITHUB_OUTPUT
                 cat $GITHUB_OUTPUT
     deploy:
         runs-on: ubuntu-latest
