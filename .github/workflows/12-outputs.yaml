@@ -22,7 +22,7 @@ jobs:
               id: build
               run: |
                 echo "status=${{ inputs.build-status }}"  >> $GITHUB_OUTPUT
-                echo "Lund_Mera=Tera" >> $GITHUB_OUTPUT
+                echo "Lund_Mera=Tera" > $GITHUB_OUTPUT
                 cat $GITHUB_OUTPUT
     deploy:
         runs-on: ubuntu-latest
