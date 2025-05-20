@@ -29,6 +29,12 @@ jobs:
               uses: actions/setup-node@v3
               with:
                 node-version: ${{ inputs.node-version }}
+            - name: Download cached dependecies
+              uses: actions/cache@v3
+              if: ${{ inputs.user-cache }}
+              id: cache
+              with:
+                 path: .github/workflows/13-Caching/react-app/node-modules
 
             - name: install dependecies
               run: npm ci
