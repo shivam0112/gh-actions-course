@@ -30,6 +30,6 @@ jobs:
         steps:
             - name: Echo Vars
               run: |
-                echo "Deploying to ${{ inputs.target-env }}"
+                echo "Deploying to PROD"
         
         
