@@ -22,7 +22,7 @@ jobs:
 
     - name: Debug Host
       run: |
-        echo "Trying to connect to: ${{ secrets.TOMCAT_SERVER }}"
+        echo "Raw TOMCAT_SERVER: $TOMCAT_SERVER"
 
 
     - name: Setup SSH key
