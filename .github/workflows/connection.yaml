@@ -14,7 +14,9 @@ jobs:
             - name: Loop and Deploy
               run: |
                 IFS=',' read -ra HOSTS <<< "${{ secrets.DEPLOY_SERVERS }}
-                for HOST in ${HOSTS[@]}";do
+                for HOST in ${HOSTS[@]}";
+                do
                   echo "Deploying to $HOST"
                   ssh-keyscan -H "$HOST" >> ~/.ssh/known-hosts
                   ssh "$HOST" 'echo Connected to $HOST from GitHub Actions'
+                done
