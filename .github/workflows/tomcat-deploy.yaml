@@ -1,0 +1,38 @@
+name: Manage Tomcat
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Start or Stop Tomcat'
+        required: true
+        default: 'start'
+        type: choice
+        options:
+          - start
+          - stop
+
+jobs:
+  manage-tomcat:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.TOMCAT_SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.TOMCAT_SERVER }} >> ~/.ssh/known_hosts
+
+    - name: Run Tomcat command
+      run: |
+        if [ "${{ github.event.inputs.action }}" == "start" ]; then
+          ssh ${{ secrets.TOMCAT_SERVER }} '$TOMCAT_HOME/bin/startup.sh'
+        else
+          ssh ${{ secrets.TOMCAT_SERVER }} '$TOMCAT_HOME/bin/shutdown.sh'
+        fi
+      env:
+        TOMCAT_HOME: ${{ secrets.TOMCAT_PATH }}
