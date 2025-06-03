@@ -13,7 +13,7 @@ jobs:
 
             - name: Set up SSH
               run: |
-                touch ~/.ssh/known_hosts
+                
                 echo "Pinging to servers ${{ secrets.DEPLOY_SERVERS }}"
 
 
@@ -23,6 +23,7 @@ jobs:
                 
                 IFS=',' read -ra HOSTS <<< "${{ secrets.DEPLOY_SERVERS }}"
                 for HOST in "${HOSTS[@]}"; do
+                  touch ~/.ssh/known_hosts
                   echo "Deploying to $HOST"
                   ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
                   ssh "$HOST" "echo Connected to $HOST from GitHub Actions"
