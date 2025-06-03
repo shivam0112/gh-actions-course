@@ -13,6 +13,7 @@ jobs:
 
             - name: Set up SSH
               run: |
+                touch ~./ssh/known_hosts
                 echo "Pinging to servers ${{ secrets.DEPLOY_SERVERS }}"
 
 
