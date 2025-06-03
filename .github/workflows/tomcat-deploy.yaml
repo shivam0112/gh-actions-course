@@ -20,6 +20,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Debug Host
+      run: |
+        echo "Trying to connect to: ${{ secrets.TOMCAT_SERVER }}"
+
+
     - name: Setup SSH key
       run: |
         mkdir -p ~/.ssh
