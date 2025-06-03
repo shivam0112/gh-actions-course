@@ -11,12 +11,17 @@ jobs:
             - name: Checkout Code
               uses: actions/checkout@v3
 
+            - name: Set up SSH
+              run: |
+                echo "Pinging to servers ${{ secrets.DEPLOY_SERVERS }}"
+
+
+
             - name: Loop and Deploy
               run: |
-                IFS=',' read -ra HOSTS <<< "${{ secrets.DEPLOY_SERVERS }}
-                for HOST in ${HOSTS[@]}";
-                do
+                IFS=',' read -ra HOSTS <<< "${{ secrets.DEPLOY_SERVERS }}"
+                for HOST in ${HOSTS[@]}"; do
                   echo "Deploying to $HOST"
-                  ssh-keyscan -H "$HOST" >> ~/.ssh/known-hosts
+                  ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
                   ssh "$HOST" 'echo Connected to $HOST from GitHub Actions'
                 done
