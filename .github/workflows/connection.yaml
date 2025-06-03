@@ -13,8 +13,9 @@ jobs:
 
             - name: Set up SSH
               run: |
-                
-                echo "Pinging to servers ${{ secrets.DEPLOY_SERVERS }}"
+                mkdir -p ~/.ssh
+                echo "${{ secrets.DEPLOY_SERVERS }}" > /.ssh/id_rsa
+                chmod 600 ~/.ssh/id_rsa
 
 
 
@@ -23,7 +24,7 @@ jobs:
                 
                 IFS=',' read -ra HOSTS <<< "${{ secrets.DEPLOY_SERVERS }}"
                 for HOST in "${HOSTS[@]}"; do
-                  touch ~/.ssh/known_hosts
+                  # touch ~/.ssh/known_hosts
                   echo "Deploying to $HOST"
                   ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
                   ssh "$HOST" "echo Connected to $HOST from GitHub Actions"
