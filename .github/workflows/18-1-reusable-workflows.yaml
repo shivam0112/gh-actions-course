@@ -1,7 +1,7 @@
 name: 18.1 - Reusable Workflow - Reusable Definition
 run-name: Workflow ${{ github.Workflow }} is triggered by ${{ github.actor }}
 on:
-  Workflow_call:
+  workflow_call:
     inputs:
       target-directory:
         required: true
