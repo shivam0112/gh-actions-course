@@ -6,8 +6,8 @@ on:
       target-directory:
         required: true
         type: string
-      outputs:
-        build-status:
+    outputs:
+      build-status:
         description: The status of the build process
         value: ${{ jobs.deploy.outputs.build-status }}
       url:
